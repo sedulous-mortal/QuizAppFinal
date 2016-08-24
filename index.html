@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz App GreyBox</title>
+
+    <!-- Responsive viewport tag, tells small screens that it's responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Normalize.css, a cross-browser reset file -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/grid.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+</head>
+
+<body>
+
+    <div id="introDiv">
+        <h2>Ready to start Alison's Tennis Quiz?</h2>
+        <button id="startQuiz">Click Me!</button>
+    </div>
+
+    <div id="quizDiv">
+        <form id="question">
+            <h3 class="qText"></h3>
+            <ul>
+                <li>
+                    <input type='radio' name="option" value='0'><span class='answer' value='0'></span> </li>
+                <li>
+                    <input type='radio' name="option" value='1'><span class='answer' value='1'></span> </li>
+                <li>
+                    <input type='radio' name="option" value='2'><span class='answer' value='2'></span></li>
+                <li>
+                    <input type='radio' name="option" value='3'><span class='answer' value='3'></span></li>
+            </ul>
+            <button class="submit">Submit Answer</button>
+        </form>
+    </div>
+    <!--commenting out extra questions since only one will be visile at a time anyway-->
+    <!--
+
+
+        <div id="q3">How many sets must a woman win in pro tennis to have won the match?
+            <form id="q3">
+                <p>2</p>
+                <p>3</p>
+                <p>4</p>
+                <p>6</p>
+                <button class="submit">Submit Answer</button>
+            </form>
+        </div>
+
+        <div id="q4">What must one do to serve in the game of tennis?
+            <form id="q4">
+                <p>You have to jump and then you can hit the ball.</p>
+                <p>You have to throw the ball up and then you can swing at it.</p>
+                <p>You first drop the ball, then hit it.</p>
+                <p>You must bounce the ball against the court, then swing at it.</p>
+                <button class="submit">Submit Answer</button>
+            </form>
+        </div>
+
+        <div id="q5">What advertisement is Maria Sharapova famous for doing during her tennis career?
+            <form id="q5">
+                <p>A sunglasses ad</p>
+                <p>A watch ad</p>
+                <p>A dress ad</p>
+                <p>A camera ad</p>
+                <button class="submit">Submit Answer</button>
+            </form>
+        </div>
+        -->
+    <!--only 5 questions for greybox-->
+
+    </div>
+
+    <div id="resultsDiv">
+        <h2> Your progress/results: </h2>
+        <p>Your example score: ____/10 </p>
+        <p>Your example grade: A+ </p>
+    </div>
+
+    <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
