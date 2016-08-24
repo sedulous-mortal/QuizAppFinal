@@ -42,6 +42,19 @@ $('document').ready(function () {
             correctAns: 3,
 
     },
+
+        {
+            question: 'Who was the first woman to win a singles tournament at the U.S. Open?',
+
+            answers: ['Maria Sharapova', 'Ellen Hansell', '3', '4'],
+            correctAns: 1,
+        },
+        {
+            question: 'In 1881, Richard Sears won the first men\'s singles tournament at the U.S. Open. How many more years following this did he continue to hold the champion title?',
+
+            answers: ['3', '8', '5', '6'],
+            correctAns: 4,
+        }
 ];
 
 
@@ -74,15 +87,15 @@ $('document').ready(function () {
             $('#points').text(points);
         }
         qCount = qCount + 1;
-        $('.percentScore').text(points / qCount);
+        $('.percentScore').text(Math.round((points / qCount) * 100));
         console.log(points + "is points");
         console.log(qCount + "is question count");
         generateQuestion();
 
-        if (qCount == 5) {
+        if (qCount == 10) {
             $('#resultsDiv').show();
         }
-    });
+    }); //end question submit handler
 
 
 
