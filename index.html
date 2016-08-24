@@ -28,63 +28,38 @@
     </div>
 
     <div id="quizDiv">
+        <p>You are on question <span class="qcount">number</span> out of 5.</p>
         <form id="question">
             <h3 class="qText"></h3>
-            <ul>
-                <li>
-                    <input type='radio' name="option" value='0'><span class='answer' value='0'></span> </li>
-                <li>
-                    <input type='radio' name="option" value='1'><span class='answer' value='1'></span> </li>
-                <li>
-                    <input type='radio' name="option" value='2'><span class='answer' value='2'></span></li>
-                <li>
-                    <input type='radio' name="option" value='3'><span class='answer' value='3'></span></li>
-            </ul>
-            <button class="submit">Submit Answer</button>
+            <div id="prettyAns">
+                <ul>
+                    <li>
+                        <input type='radio' name="option" value='0'><span class='answer' value='0'></span> </li>
+                    <li>
+                        <input type='radio' name="option" value='1'><span class='answer' value='1'></span> </li>
+                    <li>
+                        <input type='radio' name="option" value='2'><span class='answer' value='2'></span></li>
+                    <li>
+                        <input type='radio' name="option" value='3'><span class='answer' value='3'></span></li>
+                </ul>
+            </div>
+            <button type="submit" class="submit">Submit Answer</button>
+            <br>
         </form>
+        <p>Your current score: <span id="points">0</span>/<span class="qcount">0</span>, or <span class="percentScore">0</span>%.</p>
     </div>
     <!--commenting out extra questions since only one will be visile at a time anyway-->
     <!--
 
-
-        <div id="q3">How many sets must a woman win in pro tennis to have won the match?
-            <form id="q3">
-                <p>2</p>
-                <p>3</p>
-                <p>4</p>
-                <p>6</p>
-                <button class="submit">Submit Answer</button>
-            </form>
-        </div>
-
-        <div id="q4">What must one do to serve in the game of tennis?
-            <form id="q4">
-                <p>You have to jump and then you can hit the ball.</p>
-                <p>You have to throw the ball up and then you can swing at it.</p>
-                <p>You first drop the ball, then hit it.</p>
-                <p>You must bounce the ball against the court, then swing at it.</p>
-                <button class="submit">Submit Answer</button>
-            </form>
-        </div>
-
-        <div id="q5">What advertisement is Maria Sharapova famous for doing during her tennis career?
-            <form id="q5">
-                <p>A sunglasses ad</p>
-                <p>A watch ad</p>
-                <p>A dress ad</p>
-                <p>A camera ad</p>
-                <button class="submit">Submit Answer</button>
-            </form>
-        </div>
-        -->
     <!--only 5 questions for greybox-->
 
     </div>
 
     <div id="resultsDiv">
-        <h2> Your progress/results: </h2>
-        <p>Your example score: ____/10 </p>
-        <p>Your example grade: A+ </p>
+        <h2> Your final results are... </h2>
+        <p>Your final score: <span id="points">0</span>/5 </p>
+        <!--where i use a switch to decide the grade A-F-->
+        <p>Your final grade: ?? </p>
     </div>
 
     <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>

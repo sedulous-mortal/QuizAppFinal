@@ -18,7 +18,7 @@ body {
 }
 
 #quizDiv {
-    height: 40%;
+    min-height: 40%;
     background-color: #b6b6b6;
     border: 1px green solid;
     padding-top: 0px;
@@ -28,14 +28,13 @@ body {
 #quizDiv ul {
     margin: 0 auto;
     text-align: justify;
-    width: 40%;
 }
 
 #quizDiv li {
     list-style-type: none;
 }
 
-.submit {
+button[type='submit'] {
     padding: 10px;
     margin: 20px;
 }
@@ -47,11 +46,22 @@ body {
 }
 
 .qText {
-    font-size: 30px;
+    font-size: 20px;
 }
 
 #introDiv,
 #quizDiv,
 #resultsDiv {
     padding: 10px;
+}
+
+#quizDiv,
+#resultsDiv {
+    display: none;
+}
+
+#prettyAns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
