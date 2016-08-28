@@ -25,6 +25,11 @@ body {
     text-align: center;
 }
 
+#submitButton {
+    position: absolute;
+    top: 50%;
+}
+
 #quizDiv ul {
     margin: 0 auto;
     text-align: justify;
@@ -60,7 +65,7 @@ button[type='submit'] {
     display: none;
 }
 
-#prettyAns {
+.prettyAns {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

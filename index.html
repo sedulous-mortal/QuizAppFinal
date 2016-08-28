@@ -31,7 +31,7 @@
         <p>You are on question <span class="qcount">number</span> out of 10.</p>
         <form id="question">
             <h3 class="qText"></h3>
-            <div id="prettyAns">
+            <div class="prettyAns">
                 <ul>
                     <li>
                         <input type='radio' name="option" value='0'><span class='answer' value='0'></span> </li>
@@ -43,23 +43,21 @@
                         <input type='radio' name="option" value='3'><span class='answer' value='3'></span></li>
                 </ul>
             </div>
-            <button type="submit" class="submit">Submit Answer</button>
+            <div id="submitButton">
+                <button type="submit" class="submit">Submit Answer</button>
+            </div>
             <br>
         </form>
         <p>Your current score: <span id="points">0</span>/<span class="qcount">0</span>, or <span class="percentScore">0</span>%.</p>
     </div>
-    <!--commenting out extra questions since only one will be visile at a time anyway-->
-    <!--
 
-    <!--only 5 questions for greybox-->
 
     </div>
 
     <div id="resultsDiv">
         <h2> Your final results are... </h2>
-        <p>Your final score: <span id="points">0</span>/5 </p>
-        <!--where i use a switch to decide the grade A-F-->
-        <p>Your final grade: ?? </p>
+        <p>Your final score: <span id="points">0</span>/10 </p>
+        <p>Your final grade: <span id="finGrade">Unknown</span> </p>
     </div>
 
     <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
