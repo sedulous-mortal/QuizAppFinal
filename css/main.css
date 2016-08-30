@@ -2,32 +2,67 @@ p {}
 
 html,
 body {
+    min-height: 100vh;
+}
+
+body {
+    color: gainsboro;
     font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
-    background-color: black;
-    height: 100%;
     text-align: center;
-    overflow: auto;
     margin-left: 10%;
     margin-right: 10%;
+    z-index: 1;
+    position: relative;
+}
+
+@media (min-width: 647px and min-height: 394px) {
+    html {
+        background-size: auto;
+    }
+}
+
+html {
+    background-color: saddlebrown;
+    background-image: url('../imgs/spinnyTennis.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+html.lightResults:before {
+    bottom: 30%;
+}
+
+html:before {
+    background-color: black;
+    opacity: .5;
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: " ";
+    display: block;
+}
+
+#question {
+    height: 200px;
+    text-align: left;
 }
 
 #introDiv {
     height: 30%;
-    background-color: #f2f2f2;
-    border: 1px red solid;
+    color: gainsboro;
+    /*background-color: #f2f2f2;
+    border: 1px red solid;*/
 }
 
 #quizDiv {
-    min-height: 40%;
-    background-color: #b6b6b6;
-    border: 1px green solid;
+    min-height: 50%;
+    max-height: 60%;
     padding-top: 0px;
     text-align: center;
-}
-
-#submitButton {
-    position: absolute;
-    top: 50%;
 }
 
 #quizDiv ul {
@@ -39,19 +74,39 @@ body {
     list-style-type: none;
 }
 
-button[type='submit'] {
+#quizDiv p.first {
+    text-align: left;
+}
+
+#quizDiv p {
+    text-align: right;
+}
+
+button[class="submit"] {
+    position: relative;
     padding: 10px;
     margin: 20px;
+    top: 35%;
+    max-height: 10%;
+}
+
+.underSubmit {
+    top: 40%;
 }
 
 #resultsDiv {
     height: 30%;
-    background-color: #8a8a8a;
-    border: 1px blue solid;
+    padding-top: 10%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: gainsboro;
+    text-shadow: 1px 1px navy;
 }
 
 .qText {
-    font-size: 20px;
+    font-size: 18px;
+    line-height: 1.5em;
 }
 
 #introDiv,

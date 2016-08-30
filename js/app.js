@@ -2,9 +2,9 @@
 
 $('document').ready(function () {
     //counts how many questions have been answered
-    var qCount = 0;
-    var points = 0;
-    var percentScore = 0;
+    var qCount = 0,
+        points = 0,
+        percentScore = 0;
 
 
     //here are all the questions
@@ -48,32 +48,32 @@ $('document').ready(function () {
         {
             question: 'Who was the first woman to win a singles tournament at the U.S. Open?',
 
-            answers: ['Maria Sharapova', 'Ellen Hansell', '3', '4'],
+            answers: ['Maria Sharapova', 'Ellen Hansell', 'Stephie Graph', 'Serena Williams'],
             correctAns: 1
         },
         {
-            question: 'In 1881, Richard Sears won the first men\'s singles tournament at the U.S. Open. How many more years following this did he continue to hold the champion title?',
+            question: 'What title was the first that André Agassi won in his career?',
 
-            answers: ['3', '8', '5', '6'],
-            correctAns: 4
+            answers: ['Men\'s singles', 'Mixed Doubles', '', '6'],
+            correctAns: 3
         },
         {
             question: 'In 1881, Richard Sears won the first men\'s singles tournament at the U.S. Open. How many more years following this did he continue to hold the champion title?',
 
             answers: ['3', '8', '5', '6'],
-            correctAns: 4
+            correctAns: 3
         },
         {
             question: 'In 1881, Richard Sears won the first men\'s singles tournament at the U.S. Open. How many more years following this did he continue to hold the champion title?',
 
             answers: ['3', '8', '5', '6'],
-            correctAns: 4
+            correctAns: 3
         },
         {
             question: 'In 1881, Richard Sears won the first men\'s singles tournament at the U.S. Open. How many more years following this did he continue to hold the champion title?',
 
             answers: ['3', '8', '5', '6'],
-            correctAns: 4
+            correctAns: 3
         }
     ];
 
@@ -98,43 +98,44 @@ $('document').ready(function () {
     });
 
     //submit handler
-    $('#question').submit(function (e) {
+    $('#submit').click(function (e) {
         e.preventDefault();
         //temporary
         console.log('Im about to run this conditional');
         console.log($('input[name=option]:checked').attr('value'));
         console.log(questions[qCount].correctAns);
-
+        //end temporary
         if ($('input[name=option]:checked').attr('value') == questions[qCount].correctAns) {
-            //console.log('conditional evaluated true');
             points = points + 1;
             $('#points').text(points);
+            $('#finalPoints').text(points);
         }
         qCount = qCount + 1;
         percentScore = Math.round((points / qCount) * 100);
         $('.percentScore').text(percentScore);
         generateQuestion();
-
+        grade(percentScore);
         if (qCount === questions.length) {
             $('#resultsDiv').show();
+            $('html').addClass('lightResults');
         }
     }); //end question submit handler
 
     function grade(percentage) {
         percentScore = Math.round((points / qCount) * 100);
-        if (percentScore > 90) {
+        if (percentScore >= 90) {
             $('#finGrade').text("A");
-        } else if (percentScore > 80 && percentage < 90) {
+        } else if (percentScore >= 80 && percentage < 90) {
             $('#finGrade').text("B");
-        } else if (percentScore > 70 && percentage < 80) {
+        } else if (percentScore >= 70 && percentage < 80) {
             $('#finGrade').text("C");
-        } else if (percentScore > 60 && percentage < 70) {
+        } else if (percentScore >= 60 && percentage < 70) {
             $('#finGrade').text("D");
         } else {
             $('#finGrade').text("F");
         }
     }
-    grade(percentScore);
+
 
 
 }); //end ready function
