@@ -52,22 +52,22 @@ $('document').ready(function () {
             correctAns: 1
         },
         {
-            question: 'What title was the first that André Agassi won in his career?',
+            question: 'Where did André Agassi win his first Grand Slam title?',
 
-            answers: ['Men\'s singles', 'Mixed Doubles', '', '6'],
+            answers: ['Wimbledon', 'The U.S. Open', 'The Australian Open', 'In France'],
+            correctAns: 0
+        },
+        {
+            question: 'Which pair of brothers are famous for their skills teaming up in doubles play?',
+
+            answers: ['Patrick & John McEnroe', 'Jamie & Andy Murray', 'Christophe & Olivier Rochus', 'Bob & Mike Bryan'],
             correctAns: 3
         },
         {
-            question: 'In 1881, Richard Sears won the first men\'s singles tournament at the U.S. Open. How many more years following this did he continue to hold the champion title?',
+            question: 'Which bank sponsors the digital reviewing system used at the U.S. Open to assess the validity of Challenges that players make to referee calls?',
 
-            answers: ['3', '8', '5', '6'],
-            correctAns: 3
-        },
-        {
-            question: 'In 1881, Richard Sears won the first men\'s singles tournament at the U.S. Open. How many more years following this did he continue to hold the champion title?',
-
-            answers: ['3', '8', '5', '6'],
-            correctAns: 3
+            answers: ['Citibank', 'Chase', 'Bank of America', 'First Republic'],
+            correctAns: 1
         },
         {
             question: 'In 1881, Richard Sears won the first men\'s singles tournament at the U.S. Open. How many more years following this did he continue to hold the champion title?',
@@ -94,17 +94,13 @@ $('document').ready(function () {
         $('#introDiv').hide();
         $('#quizDiv').show();
         generateQuestion();
+        $('.bot_of_quizDiv').show();
 
     });
 
     //submit handler
     $('#submit').click(function (e) {
         e.preventDefault();
-        //temporary
-        console.log('Im about to run this conditional');
-        console.log($('input[name=option]:checked').attr('value'));
-        console.log(questions[qCount].correctAns);
-        //end temporary
         if ($('input[name=option]:checked').attr('value') == questions[qCount].correctAns) {
             points = points + 1;
             $('#points').text(points);
@@ -135,7 +131,5 @@ $('document').ready(function () {
             $('#finGrade').text("F");
         }
     }
-
-
 
 }); //end ready function

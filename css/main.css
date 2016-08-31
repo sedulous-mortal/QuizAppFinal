@@ -1,5 +1,3 @@
-p {}
-
 html,
 body {
     min-height: 100vh;
@@ -35,7 +33,7 @@ html.lightResults:before {
 
 html:before {
     background-color: black;
-    opacity: .5;
+    opacity: .55;
     z-index: 0;
     position: absolute;
     top: 0;
@@ -46,42 +44,65 @@ html:before {
     display: block;
 }
 
+#resultsDiv:after {
+    background-color: white;
+    opacity: .1;
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: " ";
+    display: block;
+}
+
+.results_data {
+    background: rgba(255, 255, 255, 0.0);
+    color: white;
+    transition: 2s;
+}
+
+.results_data:hover {
+    transition: 1s;
+    background: rgba(255, 255, 255, 0.3);
+    color: midnightblue;
+}
+
+
+}
 #question {
     height: 200px;
     text-align: left;
 }
-
 #introDiv {
     height: 30%;
     color: gainsboro;
     /*background-color: #f2f2f2;
     border: 1px red solid;*/
 }
-
+.bot_of_quizDiv {
+    display: none;
+}
 #quizDiv {
     min-height: 50%;
     max-height: 60%;
     padding-top: 0px;
     text-align: center;
 }
-
 #quizDiv ul {
     margin: 0 auto;
     text-align: justify;
 }
-
 #quizDiv li {
     list-style-type: none;
 }
-
 #quizDiv p.first {
     text-align: left;
 }
-
 #quizDiv p {
     text-align: right;
 }
-
 button[class="submit"] {
     position: relative;
     padding: 10px;
@@ -89,37 +110,34 @@ button[class="submit"] {
     top: 35%;
     max-height: 10%;
 }
-
 .underSubmit {
     top: 40%;
 }
-
 #resultsDiv {
     height: 30%;
     padding-top: 10%;
     position: absolute;
     bottom: 0;
     width: 100%;
-    color: gainsboro;
+    color: black;
     text-shadow: 1px 1px navy;
 }
-
+.front {
+    z-index: 1;
+}
 .qText {
     font-size: 18px;
     line-height: 1.5em;
 }
-
 #introDiv,
 #quizDiv,
 #resultsDiv {
     padding: 10px;
 }
-
 #quizDiv,
 #resultsDiv {
     display: none;
 }
-
 .prettyAns {
     display: flex;
     flex-wrap: wrap;
