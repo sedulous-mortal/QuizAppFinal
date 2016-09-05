@@ -83,6 +83,8 @@ $('document').ready(function () {
         if (qCount === questions.length) {
             return;
         }
+        $('.nocheck').prop('checked', false);
+        console.log($('input[type="radio"]'));
         $('.qText').text(questions[qCount].question);
         $('.answer[value=0]').text(questions[qCount].answers[0]);
         $('.answer[value=1]').text(questions[qCount].answers[1]);
