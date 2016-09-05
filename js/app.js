@@ -4,7 +4,8 @@ $('document').ready(function () {
     //counts how many questions have been answered
     var qCount = 0,
         points = 0,
-        percentScore = 0;
+        percentScore = 0,
+        qDone = 0;
 
 
     //here are all the questions
@@ -79,12 +80,12 @@ $('document').ready(function () {
 
 
     function generateQuestion() {
-        $('.qcount').text(qCount);
+        $('.qcount').text(qCount + 1);
+        $('.qDone').text(qDone);
         if (qCount === questions.length) {
             return;
         }
         $('.nocheck').prop('checked', false);
-        console.log($('input[type="radio"]'));
         $('.qText').text(questions[qCount].question);
         $('.answer[value=0]').text(questions[qCount].answers[0]);
         $('.answer[value=1]').text(questions[qCount].answers[1]);
@@ -109,18 +110,20 @@ $('document').ready(function () {
             $('#finalPoints').text(points);
         }
         qCount = qCount + 1;
-        percentScore = Math.round((points / qCount) * 100);
+        qDone = qDone + 1;
+        percentScore = Math.round((points / qDone) * 100);
         $('.percentScore').text(percentScore);
         generateQuestion();
         grade(percentScore);
         if (qCount === questions.length) {
             $('#resultsDiv').show();
             $('html').addClass('lightResults');
+            $('.first').text('You have finished the quiz!');
         }
     }); //end question submit handler
 
     function grade(percentage) {
-        percentScore = Math.round((points / qCount) * 100);
+        percentScore = Math.round((points / qDone) * 100);
         if (percentScore >= 90) {
             $('#finGrade').text("A");
         } else if (percentScore >= 80 && percentage < 90) {
