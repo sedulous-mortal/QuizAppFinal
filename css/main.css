@@ -127,6 +127,9 @@ button[class="submit"] {
     height: 30%;
     text-align: justify;
 }
+#infoDiv2 {
+    padding-top: 10px;
+}
 #moreInfo {
     display: none;
 }
