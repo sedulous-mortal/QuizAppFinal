@@ -121,6 +121,14 @@ button[class="submit"] {
     width: 100%;
     color: black;
     text-shadow: 1px 1px navy;
+    /*make this positioned center vertically, so margin 35% top and bottom*/
+}
+#infoDiv {
+    height: 30%;
+    text-align: justify;
+}
+#moreInfo {
+    display: none;
 }
 .front {
     z-index: 1;

@@ -7,8 +7,11 @@ $('document').ready(function () {
         percentScore = 0,
         qDone = 0;
 
+    // DO LESSONS 1 AND 2 OF UNIT 4
 
-    //here are all the questions
+
+    //RANDOMIZE QUESTION ORDER
+    //i have to use object.create to do things :(
     var questions = [
         {
             question: 'What happens at the start of each point in a tennis game?',
@@ -108,6 +111,14 @@ $('document').ready(function () {
             points = points + 1;
             $('#points').text(points);
             $('#finalPoints').text(points);
+        } else {
+            //print out a div with correct answer in it
+            $('#infoDiv').text("Incorrect.");
+            $('#moreInfo').show();
+            //click handler for "more info button"
+            $('#moreInfo').click(function (e) {
+                $('#infoDiv2').text("The correct answer was: " + questions[qCount].answers[questions[qCount].correctAns] + ".");
+            })
         }
         qCount = qCount + 1;
         qDone = qDone + 1;
@@ -117,6 +128,7 @@ $('document').ready(function () {
         grade(percentScore);
         if (qCount === questions.length) {
             $('#resultsDiv').show();
+            //$everythingElse.hide();
             $('html').addClass('lightResults');
             $('.first').text('You have finished the quiz!');
         }
