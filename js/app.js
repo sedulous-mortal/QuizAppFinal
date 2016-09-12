@@ -2,17 +2,18 @@
 
 $('document').ready(function () {
     //counts how many questions have been answered
-    var qCount = 0,
-        points = 0,
-        percentScore = 0,
-        qDone = 0;
+    var Quiz = {
+        qCount: 0,
+        points: 0,
+        percentScore: 0,
+        qDone: 0,
+    };
+    var quiz = Object.create(Quiz);
+    var tennisCount = quiz.qCount;
 
-    // DO LESSONS 1 AND 2 OF UNIT 4
+    //TODO: RANDOMIZE QUESTION ORDER
 
-
-    //RANDOMIZE QUESTION ORDER
-    //i have to use object.create to do things :(
-    var questions = [
+    quiz.questions = [
         {
             question: 'What happens at the start of each point in a tennis game?',
 
@@ -83,17 +84,18 @@ $('document').ready(function () {
 
 
     function generateQuestion() {
-        $('.qcount').text(qCount + 1);
-        $('.qDone').text(qDone);
-        if (qCount === questions.length) {
+        $('#submit').show();
+        $('.qcount').text(tennisCount + 1);
+        $('.qDone').text(quiz.qDone);
+        if (tennisCount === quiz.questions.length) {
             return;
         }
         $('.nocheck').prop('checked', false);
-        $('.qText').text(questions[qCount].question);
-        $('.answer[value=0]').text(questions[qCount].answers[0]);
-        $('.answer[value=1]').text(questions[qCount].answers[1]);
-        $('.answer[value=2]').text(questions[qCount].answers[2]);
-        $('.answer[value=3]').text(questions[qCount].answers[3]);
+        $('.qText').text(quiz.questions[tennisCount].question);
+        $('.answer[value=0]').text(quiz.questions[tennisCount].answers[0]);
+        $('.answer[value=1]').text(quiz.questions[tennisCount].answers[1]);
+        $('.answer[value=2]').text(quiz.questions[tennisCount].answers[2]);
+        $('.answer[value=3]').text(quiz.questions[tennisCount].answers[3]);
     }
 
     $('#startQuiz').click(function () {
@@ -107,35 +109,51 @@ $('document').ready(function () {
     //submit handler
     $('#submit').click(function (e) {
         e.preventDefault();
-        if ($('input[name=option]:checked').attr('value') == questions[qCount].correctAns) {
-            points = points + 1;
-            $('#points').text(points);
-            $('#finalPoints').text(points);
-        } else {
-            //print out a div with correct answer in it
-            $('#infoDiv').text("Incorrect.");
-            $('#moreInfo').show();
-            //click handler for "more info button"
-            $('#moreInfo').click(function (e) {
-                $('#infoDiv2').text("The correct answer was: " + questions[qCount].answers[questions[qCount].correctAns] + ".");
-            })
+        $('#submit').hide();
+        //print out a div with correct answer in it
+        $('#infoDiv').show();
+        $('#infoDiv').text("Incorrect.");
+        $('#moreInfo').show();
+        $('#ok').show();
+        //click handler for "more info button"
+        $('#moreInfo').click(function (e) {
+            $('#infodiv2').show();
+            $('#infoDiv2').text("The correct answer was: " + quiz.questions[tennisCount].answers[quiz.questions[tennisCount].correctAns] + ".");
+        });
+        tennisCount = tennisCount + 1;
+        quiz.qDone = quiz.qDone + 1;
+        quiz.percentScore = Math.round((quiz.points / quiz.qDone) * 100);
+        $('.qDone').text(quiz.qDone);
+        $('.percentScore').text(quiz.percentScore);
+        console.log($('input[name=option]:checked').attr('value'));
+        console.log(quiz.questions[tennisCount].correctAns);
+        console.log('left' + typeof $('input[name=option]:checked').attr('value'));
+        console.log('right' + typeof quiz.questions[tennisCount].correctAns);
+        //if they're right give them points
+        if (Number($('input[name=option]:checked').attr('value')) === quiz.questions[tennisCount].correctAns) {
+            quiz.points = quiz.points + 1;
+            $('#points').text(quiz.points);
+            $('#finalPoints').text(quiz.points);
         }
-        qCount = qCount + 1;
-        qDone = qDone + 1;
-        percentScore = Math.round((points / qDone) * 100);
-        $('.percentScore').text(percentScore);
+    }); //end question submit handler
+
+    $('#ok').click(function () {
+        $('#moreInfo').hide();
+        $('#infoDiv').hide();
+        $('#infoDiv2').hide();
+        $('#ok').hide();
         generateQuestion();
-        grade(percentScore);
-        if (qCount === questions.length) {
+        grade(quiz.points, quiz.qDone, quiz.percentScore);
+        if (tennisCount === quiz.questions.length) {
             $('#resultsDiv').show();
             //$everythingElse.hide();
             $('html').addClass('lightResults');
             $('.first').text('You have finished the quiz!');
         }
-    }); //end question submit handler
+    });
 
-    function grade(percentage) {
-        percentScore = Math.round((points / qDone) * 100);
+    function grade(points, qDone, percentage) {
+        var percentScore = Math.round((points / qDone) * 100);
         if (percentScore >= 90) {
             $('#finGrade').text("A");
         } else if (percentScore >= 80 && percentage < 90) {

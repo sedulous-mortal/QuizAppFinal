@@ -113,6 +113,9 @@ button[class="submit"] {
 .underSubmit {
     top: 40%;
 }
+#ok {
+    display: none;
+}
 #resultsDiv {
     height: 30%;
     padding-top: 10%;
