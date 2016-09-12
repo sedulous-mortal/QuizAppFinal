@@ -7,9 +7,10 @@ $('document').ready(function () {
         points: 0,
         percentScore: 0,
         qDone: 0,
+        currentQ: 1
     };
     var quiz = Object.create(Quiz);
-    var tennisCount = quiz.qCount;
+    //var tennisCount = quiz.qCount;
 
     //TODO: RANDOMIZE QUESTION ORDER
 
@@ -83,10 +84,10 @@ $('document').ready(function () {
     ];
 
 
-    function generateQuestion() {
+    function generateQuestion(tennisCount) {
         $('#submit').show();
-        $('.qcount').text(tennisCount + 1);
-        $('.qDone').text(quiz.qDone);
+        $('.currentQ').text(quiz.currentQ);
+        //$('.qDone').text(quiz.qDone);
         if (tennisCount === quiz.questions.length) {
             return;
         }
@@ -101,57 +102,82 @@ $('document').ready(function () {
     $('#startQuiz').click(function () {
         $('#introDiv').hide();
         $('#quizDiv').show();
-        generateQuestion();
+        generateQuestion(quiz.qCount);
         $('.bot_of_quizDiv').show();
 
     });
 
     //submit handler
     $('#submit').click(function (e) {
+        //if they don't pick an answer, tell them they must
+        if (!$('[name="option"]').is(':checked')) {
+            $('.required').text("Please select an answer before hitting Submit.");
+            $('.required').show();
+            return
+        }
+        var tennisCount = quiz.qCount;
         e.preventDefault();
         $('#submit').hide();
         //print out a div with correct answer in it
         $('#infoDiv').show();
-        $('#infoDiv').text("Incorrect.");
         $('#moreInfo').show();
         $('#ok').show();
         //click handler for "more info button"
         $('#moreInfo').click(function (e) {
-            $('#infodiv2').show();
+            $('#infoDiv').show();
+            $('#infoDiv2').show();
             $('#infoDiv2').text("The correct answer was: " + quiz.questions[tennisCount].answers[quiz.questions[tennisCount].correctAns] + ".");
         });
-        tennisCount = tennisCount + 1;
-        quiz.qDone = quiz.qDone + 1;
-        quiz.percentScore = Math.round((quiz.points / quiz.qDone) * 100);
-        $('.qDone').text(quiz.qDone);
-        $('.percentScore').text(quiz.percentScore);
-        console.log($('input[name=option]:checked').attr('value'));
-        console.log(quiz.questions[tennisCount].correctAns);
-        console.log('left' + typeof $('input[name=option]:checked').attr('value'));
-        console.log('right' + typeof quiz.questions[tennisCount].correctAns);
+        $('#infoDiv').text("Incorrect.");
         //if they're right give them points
-        if (Number($('input[name=option]:checked').attr('value')) === quiz.questions[tennisCount].correctAns) {
+        if ($('input[name=option]:checked').attr('value') == quiz.questions[tennisCount].correctAns) {
             quiz.points = quiz.points + 1;
             $('#points').text(quiz.points);
             $('#finalPoints').text(quiz.points);
+            $('#infoDiv').text("Correct.");
+            $('#moreInfo').hide();
         }
+        //increment how many questions we've completed
+        quiz.qDone = quiz.qDone + 1;
+        //show new # of questions completed
+        $('.qDone').html(quiz.qDone);
+        //update and display current percent score
+        quiz.percentScore = Math.round((quiz.points / quiz.qDone) * 100);
+        $('.percentScore').text(quiz.percentScore);
     }); //end question submit handler
 
     $('#ok').click(function () {
+        //hide everything and then generate question
         $('#moreInfo').hide();
         $('#infoDiv').hide();
         $('#infoDiv2').hide();
         $('#ok').hide();
-        generateQuestion();
+        $('.required').hide();
+        //increment which question we are on by 1
+        quiz.qCount = quiz.qCount + 1;
+        //update the information about the person's grade,
+        //even if it's not visible yet because it's in Results
         grade(quiz.points, quiz.qDone, quiz.percentScore);
-        if (tennisCount === quiz.questions.length) {
+        //increment the number question we are on
+        quiz.currentQ = quiz.currentQ + 1;
+        //generate the next question
+        generateQuestion(quiz.qCount);
+        //if we are done with the quiz, then...
+        if (quiz.qCount === quiz.questions.length) {
+            //show the final Results
             $('#resultsDiv').show();
-            //$everythingElse.hide();
+            //hide everything else
+            $('#quizDiv').hide();
+            $('.bot_of_quizDiv').hide();
+            $('.underSubmit').hide();
+            //make things pretty
             $('html').addClass('lightResults');
+            //change the top of the page to no longer say what question you're on
             $('.first').text('You have finished the quiz!');
         }
     });
-
+    //function to print out grade to a div called "finGrade"
+    //takes parameters points won, number of questions completed, and percentage
     function grade(points, qDone, percentage) {
         var percentScore = Math.round((points / qDone) * 100);
         if (percentScore >= 90) {
