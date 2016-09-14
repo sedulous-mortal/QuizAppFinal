@@ -28,7 +28,7 @@ html {
 }
 
 html.lightResults:before {
-    bottom: 30%;
+    bottom: 100%;
 }
 
 html:before {
@@ -113,8 +113,11 @@ button[class="submit"] {
 .underSubmit {
     top: 40%;
 }
+#ok {
+    display: none;
+}
 #resultsDiv {
-    height: 30%;
+    height: 100%;
     padding-top: 10%;
     position: absolute;
     bottom: 0;

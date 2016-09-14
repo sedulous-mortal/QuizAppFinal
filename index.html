@@ -28,14 +28,15 @@
     </div>
 
     <div id="quizDiv">
-        <p class="first">You are on question <span class="qcount">number</span> out of 10.</p>
+        <p class="first">You are on question <span class="currentQ">number</span> out of 10.</p>
+        <p class="required"></p>
         <div class="submitFix">
             <form id="question">
                 <h3 class="qText"></h3>
                 <div class="prettyAns">
                     <ul>
                         <li>
-                            <input type='radio' name="option" value='0' class="nocheck"> <span class='answer' value='0'></span> </li>
+                            <input type='radio' name="option" value='0' class="nocheck" required> <span class='answer' value='0'></span> </li>
                         <li>
                             <input type='radio' name="option" value='1' class="nocheck"> <span class='answer' value='1'></span> </li>
                         <li>
@@ -52,6 +53,7 @@
         <div id="infoDiv"></div>
         <button id="moreInfo">More Info</button>
         <div id="infoDiv2"></div>
+        <button id="ok">Okay, next question!</button>
         <p class="underSubmit">Your current score: <span id="points">0</span>/<span class="qDone">0</span>, or <span class="percentScore">0</span>%.</p>
     </div>
 
